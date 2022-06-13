@@ -1,13 +1,11 @@
 import { Flex, Text } from '@chakra-ui/react'
 import type { NextPage } from 'next'
-import { FlexColCenterCenter } from '../utils/FlexConfigs'
+import { FlexColCenterCenter, FlexColCenterStart } from '../utils/FlexConfigs'
 
 const Home: NextPage = () => {
   return (
-    <Flex width="100vw" height="100vh" {...FlexColCenterCenter}  >
-          <Text fontSize={"20px"} fontWeight="400px" >
-            Wassup 👋
-          </Text>
+    <Flex {...FlexColCenterStart}  width="100vw" height={"100vh"} backgroundImage="/DevAssets/Homepage_Desktop 3.png" backgroundSize={"cover"} backgroundRepeat="no-repeat" >
+      dd
     </Flex>
   )
 }

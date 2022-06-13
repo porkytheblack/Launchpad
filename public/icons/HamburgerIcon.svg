@@ -1,0 +1,15 @@
+<svg width="36" height="28" viewBox="0 0 36 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="HamburgerIcon" clip-path="url(#clip0_19_188)">
+<g id="hamburger">
+<rect id="Rectangle 18" x="3" y="16" width="28.2857" height="4" fill="white"/>
+<rect id="Rectangle 19" x="3" y="24" width="28.2857" height="4" fill="white"/>
+<path id="top_left_notch" fill-rule="evenodd" clip-rule="evenodd" d="M33.0159 0L20.2891 0V4H32.861V20H36.0028V56H36.0039V3.80291L33.0159 0ZM36.0039 0.201348V0L35.8457 0L36.0039 0.201348Z" fill="white"/>
+<path id="Subtract" fill-rule="evenodd" clip-rule="evenodd" d="M30.0995 8H3V12H31.2857V9.50977L30.0995 8Z" fill="white"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_19_188">
+<rect width="36" height="28" fill="white"/>
+</clipPath>
+</defs>
+</svg>

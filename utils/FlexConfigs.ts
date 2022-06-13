@@ -49,6 +49,12 @@ export const FlexColStartEnd: FlexProps = {
   justifyContent: "flex-end"
 }
 
+export const FlexColEndStart: FlexProps = {
+  flexDirection: "column",
+  alignItems: "flex-end",
+  justifyContent: "start"
+}
+
 export const FlexColStartCenter: FlexProps = {
   flexDirection: "column",
   alignItems: "flex-start",

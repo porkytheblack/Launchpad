@@ -15,6 +15,14 @@ function GlobalStylesConfig() {
           src: url('/Fonts/MandatoryPlaything.ttf') format('truetype') ;
           font-style: normal;
         }
+        ::-webkit-scrollbar {
+          width: 5px;
+          background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+          border-radius: 2.5px;
+          background: rgba(0, 0, 0, 0.69);
+        }
     `} />
   )
 }

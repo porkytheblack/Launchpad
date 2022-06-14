@@ -1,0 +1,10 @@
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="SoundIcon">
+<g id="SoundIcon_2">
+<path id="SpeakerBase" fill-rule="evenodd" clip-rule="evenodd" d="M8 20.7424V16.2573L14 14V22.9997L8 20.7424Z" fill="white"/>
+<path id="sound_bar" fill-rule="evenodd" clip-rule="evenodd" d="M16 10H17.293L18 10.707V27H16.7072L16 26.2928V10Z" fill="white"/>
+<path id="sound_bar_2" fill-rule="evenodd" clip-rule="evenodd" d="M19 9H20.2928L21 9.79036V28H19.707L19 27.2098V9Z" fill="white"/>
+<path id="sound_bar_3" fill-rule="evenodd" clip-rule="evenodd" d="M22 8H23.2926L24 8.87384V29H22.7068L22 28.1269V8Z" fill="white"/>
+</g>
+</g>
+</svg>

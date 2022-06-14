@@ -2,7 +2,9 @@ import { Flex, Grid, GridItem, Text, chakra, IconButton } from '@chakra-ui/react
 import type { NextPage } from 'next'
 import Image from 'next/image'
 import { createContext, useEffect, useState } from 'react'
+import BaseNodgeButton from '../components/Buttons/BaseNodgeButton'
 import DirectionButton from '../components/Buttons/DirectionButton'
+import FullButtonwithNodge from '../components/Buttons/FullButtonwithNodge'
 import CrewMemberDetails from '../components/Cards/CrewMemberDetails'
 import Details from '../components/Custom/Details'
 import Destination from '../components/Custom/Details/Destination'
@@ -10,8 +12,9 @@ import Mission from '../components/Custom/Details/Mission'
 import Vehicle from '../components/Custom/Details/Vehicle'
 import Player, { p_status } from '../components/Custom/Player'
 import SequenceCircle from '../components/Custom/SequenceCircle'
+import SequenceDropdown from '../components/Custom/SequenceDropdown'
 import DropDownMenu1 from '../components/Navs/DropDownMenu1'
-import { FlexColCenterBetween, FlexColCenterCenter, FlexColCenterStart, FlexColStartStart } from '../utils/FlexConfigs'
+import { FlexColCenterBetween, FlexColCenterCenter, FlexColCenterStart, FlexColStartCenter, FlexColStartStart } from '../utils/FlexConfigs'
 
 export interface details_context {
   current_details: null | "crew" | "payload" | "destination" | "mission" | "vehicle",
@@ -43,6 +46,8 @@ const Home: NextPage = () => {
   const [current_time, set_current_time] = useState<number>(0)
   const [duration, set_duration] = useState<number>(0)
   const [player_status, set_player_status] = useState<p_status>("unstarted")
+  const [play_video, set_play_video] = useState<boolean>(false)
+  const [sequence_preview_enabled, set_sequence_preview_enabled] = useState<boolean>(false)
 
   const close_current_details = ()=>{
     set_current_details(null)
@@ -58,6 +63,10 @@ const Home: NextPage = () => {
 
   const get_player_status  = (ps: p_status) =>{
     set_player_status(ps)
+  }
+
+  const close_sequence_preview = () =>{
+    set_sequence_preview_enabled(false)
   }
 
   useEffect(()=>{
@@ -78,7 +87,7 @@ const Home: NextPage = () => {
       }} >
       <Flex {...FlexColCenterStart} width="100vw" height="100vh" position="relative" >
 
-        <Player/>
+        <Player is_active={play_video} />
 
       <Grid fontFamily={"MandatoryPlaything"} overflowY="hidden" overflowX="hidden" color="white" fontSize="24px" {...FlexColCenterBetween} position="absolute" top="0px" left="0px" templateRows="60px auto 60px" display="flex"  width="100vw" height={"100vh"} bg="transparent" backgroundSize={"cover"} backgroundRepeat="no-repeat" >
         {(player_status == "unstarted" || player_status == "ended" || player_status == "paused"  ) &&<GridItem display="flex" width="100%" height="60px" {...FlexColCenterCenter} bg="rgba(0, 0, 0, 0.69)" backdropFilter={"auto"} backdropBlur="4px" >
@@ -88,8 +97,20 @@ const Home: NextPage = () => {
         </GridItem>}
         <GridItem rowSpan={1}  columnGap={"0px"} width="100vw" height="100%" >
           <Grid width="100%" height="100%" templateColumns={"20% 60% 20%"} columnGap="0px"    >
-            <GridItem height="100%" colSpan={1} >
-                <SequenceCircle timeline_duration={3} events={[
+            <GridItem display={"flex"}  {...FlexColStartCenter} padding="40px 20px" height="100%" colSpan={1} >
+                <Grid templateRows={"60px auto"} rowGap="20px" >
+                  { !sequence_preview_enabled && <GridItem rowSpan={1} >
+                      <BaseNodgeButton click_event={()=>{
+                      set_sequence_preview_enabled(true)
+                    }} icon={<Image src="/icons/launch_stage_icon.svg" width="60px" height="52px"  />} >
+                      Timeline
+                    </BaseNodgeButton>
+                  </GridItem>}
+                  {!sequence_preview_enabled && <GridItem>
+                      <SequenceDropdown/>
+                  </GridItem>}
+                </Grid>                
+                {sequence_preview_enabled && <SequenceCircle click_event={close_sequence_preview} timeline_duration={3} events={[
                   {
                     when: 1,
                     name: "Lift Off"
@@ -118,10 +139,12 @@ const Home: NextPage = () => {
                     when: 3.5,
                     name: "Nose cone jettison"
                   }
-                ]} />
+                ]} />}
             </GridItem>
             <GridItem display={"flex"}  {...FlexColCenterCenter} colSpan={1} >
-                {(player_status == "unstarted" || player_status == "ended" || player_status == "paused"  ) && <DirectionButton icon_type='right' >
+                {!play_video && <DirectionButton click_event={()=>{
+                  set_play_video(true)
+                }} icon_type='right' >
                     Play
                 </DirectionButton>}
             </GridItem>

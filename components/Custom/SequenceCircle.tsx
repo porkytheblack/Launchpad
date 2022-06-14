@@ -1,6 +1,7 @@
 import React from 'react'
 import {chakra} from "@chakra-ui/react"
 import SequenceItem from './SequenceItem'
+import Image from "next/image"
 
 export interface timeline_event {
     when: number;
@@ -8,7 +9,7 @@ export interface timeline_event {
     description?: string;
 }
 
-function SequenceCircle({timeline_duration, events, dimensions}:{timeline_duration: number, events: timeline_event[], dimensions?: {
+function SequenceCircle({timeline_duration, events, dimensions, click_event}:{timeline_duration: number, click_event?:()=>void , events: timeline_event[], dimensions?: {
     base: string,
     sm: string,
     md: string,
@@ -20,8 +21,12 @@ function SequenceCircle({timeline_duration, events, dimensions}:{timeline_durati
         return ans
     }
   return (
-    <chakra.div width="500px" position="relative" height="500px" border="2px solid white" borderRadius={"250px"} marginLeft="-350px" >
+    <chakra.div display='flex' width="500px" position="relative" height="500px" border="2px solid white" borderRadius={"250px"} marginLeft="-350px" >
+            <chakra.a cursor={"pointer"} textDecor="none" onClick={typeof click_event !== "undefined"  ? click_event : ()=>{
 
+            }}  position={"absolute"}  top="230px" left="350px" >
+                <Image src="/icons/CloseIcon.svg" width="36px" height="36px" />
+            </chakra.a>
         {
             events.map(({when, name, description}, key)=>(
                 <chakra.div key={key} transform={`rotate(${get_event_pos(when)}deg) translate(250px) rotate(-${get_event_pos(when)}deg)`} position="absolute"   top="230px" left="230px"  >
